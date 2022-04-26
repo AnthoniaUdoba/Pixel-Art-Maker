@@ -1,54 +1,36 @@
-// Select color input
-// Select size input
+//  Select color picker by getting elements from HTML
+const colorPicker = document.getElementById('colorPicker');
+// Select table element from HTML
+const canvas = document.getElementById('pixelCanvas');
 
-// When size is submitted by the user, call makeGrid()
-// Variables
-var gridSize = document.querySelector('#sizePicker');
-var table = document.querySelector('#pixelCanvas');
-var color = document.querySelector('#colorPicker');
-var gridCell = document.getElementsByTagName('table');
+// Select size input by getting elements from HTML
+const sizePicker = document.getElementById('sizePicker');
+//  Select height by getting elements from HTML
+const height = document.getElementById('inputHeight');
+//  Select width by getting elements from HTML
+const width = document.getElementById('inputWidth');
 
-// Select size input
-gridSize.addEventListener('submit', function (submit) {
 
-  submit.preventDefault();
-  var row = document.querySelector('#inputWidth').value;
-  var column = document.querySelector('#inputHeight').value;
-  makeGrid(row,column);
-  
-})
-
-// When size is submitted by the user, call makeGrid()
-function makeGrid(r,c) {
-
-  while (table.firstChild) 
-    table.removeChild(table.firstChild);
-  
-    for (let x = 0; x < r; x++) {
-        const row = document.createElement('tr');
-        table.appendChild(row);
-    
-        for (let y = 0; y < c; y++) {
-            const column = document.createElement('td');
-            row.appendChild(column);
-     }
-   }
-   colorCells();
-}
-
-// Select color input
-function colorCells() {
-
-  for (var x = 0; x < gridCell.length; x++) {
-
-    gridCell[x].addEventListener('click', function (click) {
-			gridCell = click.target.style.backgroundColor = color.value;
-    })
-    gridCell[x].addEventListener('dblclick', function (dblclick) {
-			gridCell = dblclick.target.style.backgroundColor = '#ffffff';
-		})
+// defining the makegrid function()
+function makeGrid(row, column) {
+  canvas.innerHTML = '';
+//creates tables and rows
+  for (let column = 0; column < height; column++) {
+    let row = document.querySelector("#pixelCanvas").insertRow();
+    for (let r = 0; r< width; r++){
+      row.insertCell();
+    }
   }
-};
-makeGrid(10,10);
+}
+// When size is submitted by the user, call makeGrid()
+  sizePicker.addEventListener('submit', function(submit) {
+  submit.preventDefault();
+  makeGrid(row, column);
+});
 
-// Your code goes here!
+// Add color to selected cell
+  canvas.addEventListener('click', function(changecolor) {
+    let color = colorPicker.value;
+    console.log("Color:", color);
+    changecolor.target.style.backgroundColor = color;
+  });

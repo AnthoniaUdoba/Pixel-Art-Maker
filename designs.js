@@ -17,15 +17,18 @@ function makeGrid() {
   
 //creates tables and rows
   for (let column = 0; column < height; column++) {
-    let row = document.getElementById("#canvas").insertRow();
-    for (let r = 0; r< width; r++){
-      row.insertCell();
-    }
-  }
+      const tr = document.createElement('tr');
+      canvas.appendChild(tr);
+      for (let r = 0; r< width; r++){
+        const td = document.createElement('td');
+        tr.appendChild(td);
+            
 // Add color to the selected cell
-  canvas.addEventListener('click', function(changecolor) {
+  tr.addEventListener('click', function(changecolor) {
     let color = colorPicker.value;
     console.log("Color:", color);
     changecolor.target.style.backgroundColor = color;
   });
+     }
+  }
 };

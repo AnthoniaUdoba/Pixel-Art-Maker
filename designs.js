@@ -10,6 +10,7 @@ sizePicker.addEventListener('submit', function(submit) {
    submit.preventDefault();
    makeGrid();
 });
+
 // defining the makegrid function()
 function makeGrid() {
   const height = document.getElementById('inputHeight').value;

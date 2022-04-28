@@ -3,8 +3,9 @@ const colorPicker = document.getElementById('colorPicker');
 // Select size input by getting elements from HTML
 const sizePicker = document.getElementById('sizePicker');
 
-// When size is submitted by the user, call makeGrid()
+//  Select table by getting elements from HTML
 const canvas = document.getElementById('pixelCanvas');
+// When size is submitted by the user, call makeGrid()
 sizePicker.addEventListener('submit', function(submit) {
    submit.preventDefault();
    makeGrid();
@@ -15,15 +16,15 @@ function makeGrid() {
   const width = document.getElementById('inputWidth').value;
   canvas.innerHTML = '';
   
-//creates tables and rows
+//creates tables
   for (let column = 0; column < height; column++) {
-      const tr = document.createElement('tr');
+      let tr = document.createElement('tr');
       canvas.appendChild(tr);
       for (let r = 0; r< width; r++){
-        const td = document.createElement('td');
+        let td = document.createElement('td');
         tr.appendChild(td);
             
-// Add color to the selected cell
+// Adding color to the selected cell
   tr.addEventListener('click', function(changecolor) {
     let color = colorPicker.value;
     console.log("Color:", color);
